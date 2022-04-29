@@ -23,9 +23,20 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  let answer = [];
+  for(var i=0; i<matrix.length; i++) {
+      answer[i] = [];
+      for(var j=0; j<matrix[i].length; j++) {
+          answer[i][j] = 0;
+      }
+  }
+  for (let i=0; i<matrix.length; i++){
+    for (let j=0; j<matrix[i].length; j++){
+    answer[i][j] = (typeof(matrix[i]) !== 'undefined' ? (typeof(matrix[i][j+1]) !== 'undefined' ? (matrix[i][j+1] === true ? 1 : 0) : 0 ) : 0)+(typeof(matrix[i+1]) !== 'undefined' ? (typeof(matrix[i+1][j+1]) !== 'undefined' ? (matrix[i+1][j+1] === true ? 1 : 0) : 0 ) : 0)+(typeof(matrix[i+1]) !== 'undefined' ? (typeof(matrix[i+1][j]) !== 'undefined' ? (matrix[i+1][j] === true ? 1 : 0) : 0 ) : 0)+(typeof(matrix[i+1]) !== 'undefined' ? (typeof(matrix[i+1][j-1]) !== 'undefined' ? (matrix[i+1][j-1] === true ? 1 : 0) : 0 ) : 0)+(typeof(matrix[i]) !== 'undefined' ? (typeof(matrix[i][j-1]) !== 'undefined' ? (matrix[i][j-1] === true ? 1 : 0) : 0 ) : 0)+(typeof(matrix[i-1]) !== 'undefined' ? (typeof(matrix[i-1][j-1]) !== 'undefined' ? (matrix[i-1][j-1] === true ? 1 : 0) : 0 ) : 0)+(typeof(matrix[i-1]) !== 'undefined' ? (typeof(matrix[i-1][j]) !== 'undefined' ? (matrix[i-1][j] === true ? 1 : 0) : 0 ) : 0)+(typeof(matrix[i-1]) !== 'undefined' ? (typeof(matrix[i-1][j+1]) !== 'undefined' ? (matrix[i-1][j+1] === true ? 1 : 0) : 0 ) : 0)
+    }
+  }
+  return answer
 }
 
 module.exports = {
