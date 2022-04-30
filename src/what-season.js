@@ -11,12 +11,12 @@ const { NotImplementedError } = require('../extensions/index.js');
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
-function getSeason(date) {
-  if(typeof(date) !== 'undefined'){
-    if(isValidDate(date)){
-      let monthSelector = date.getMonth();
-  if (typeof(date)==='object' && date !== ''){
-    
+ function getSeason(date) {
+  if (date === undefined) return 'Unable to determine the time of year!';
+  if (!(date instanceof Date) || Object.getOwnPropertyNames(date).length > 0) throw new Error('Invalid date!');
+  let monthSelector = date.getMonth();
+
+  if (typeof(date)==='object' && date !== ''){    
     if(monthSelector >= 0 && monthSelector <=1 || monthSelector === 11){
       return 'winter'
     }else if (monthSelector > 1 && monthSelector <5){
@@ -26,19 +26,7 @@ function getSeason(date) {
     }else if (monthSelector>7 && monthSelector<11){
       return 'autumn'
     }
-  }
-    }else{
-      return "Invalid date!"
-    }
-    
-  }else {
-    return 'Unable to determine the time of year!'
-  }
- 
- 
-}
-function isValidDate(date) {
-  return date && Object.prototype.toString.call(date) === "[object Date]" && !isNaN(date);
+  } 
 }
 
 module.exports = {
