@@ -13,8 +13,10 @@ const { NotImplementedError } = require('../extensions/index.js');
  * transform([1, 2, 3, '--discard-prev', 4, 5]) => [1, 2, 4, 5]
  * 
  */
-function transform(arr) {
+ function transform(arr) {
   let result = []  
+  if (!Array.isArray(arr)) throw new Error('\'arr\' parameter must be an instance of the Array!');
+
   if(typeof(arr) === 'object' && arr !== null){
       for (let i=0; i<arr.length; i++){
         console.log(arr[i])
@@ -37,19 +39,9 @@ function transform(arr) {
       result.push(arr[i])
     }
   }
-    if(result.length !== 0) {
-      return result
-    }else if(arr.length === 0){
-      return []
-    }else {
-      return '\'arr\' parameter must be an instance of the Array!'
-    }
-  
-  }else {
-    return '\'arr\' parameter must be an instance of the Array!'
-  }
+  return result    
 }
-
+ }
 
 module.exports = {
   transform
